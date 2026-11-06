@@ -1,0 +1,174 @@
+:root {
+  --font-outfit: "Outfit";
+  --font-fredoka: "Fredoka";
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #eef0e9;
+  color: #1e3319;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: #4a7a2c;
+  text-decoration: none;
+}
+a:hover {
+  color: #1e3319;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ---------- Offset (ink-shadow) buttons ---------- */
+/* Base shadow / lift / press values are passed in as CSS variables so that
+   :hover and :active can override them (inline styles would win otherwise). */
+.ob {
+  box-shadow: var(--ob-sh) var(--ob-sh) 0 #1e3319;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.ob[data-hover="lift"]:hover {
+  transform: translate(calc(var(--ob-lift) * -1), calc(var(--ob-lift) * -1));
+  box-shadow: var(--ob-hsh) var(--ob-hsh) 0 #1e3319;
+}
+.ob[data-hover="nudge"]:hover {
+  transform: translate(-1px, -1px);
+}
+.ob[data-press="true"]:active {
+  transform: translate(var(--ob-sh), var(--ob-sh));
+  box-shadow: 0 0 0 #1e3319;
+}
+
+.navlink {
+  color: #3a4a36;
+}
+.navlink:hover {
+  color: #4a7a2c;
+}
+
+/* Landing nav: desktop links vs. compact mobile controls */
+.nav-desktop {
+  display: flex;
+}
+.nav-mobile {
+  display: none;
+}
+@media (max-width: 759px) {
+  .nav-desktop {
+    display: none;
+  }
+  .nav-mobile {
+    display: flex;
+  }
+}
+
+/* ---------- Keyframes ---------- */
+@keyframes hfall {
+  from {
+    top: 40px;
+  }
+  to {
+    top: calc(100% - 150px);
+  }
+}
+@keyframes gfall {
+  from {
+    top: 44px;
+  }
+  to {
+    top: calc(100% - 164px);
+  }
+}
+@keyframes gfallm {
+  from {
+    top: 36px;
+  }
+  to {
+    top: calc(100% - 150px);
+  }
+}
+@keyframes pop {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.06);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes grow {
+  0% {
+    transform: scale(0);
+  }
+  80% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes plotgrow {
+  0% {
+    transform: scale(0.2) translateY(20px);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.06);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes sway {
+  0%,
+  100% {
+    transform: rotate(-6deg);
+  }
+  50% {
+    transform: rotate(6deg);
+  }
+}
+@keyframes gone {
+  to {
+    transform: scale(0) translateY(40px);
+    opacity: 0;
+  }
+}
+@keyframes gonegame {
+  to {
+    transform: scale(0) translateY(30px);
+    opacity: 0;
+  }
+}
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-8px);
+  }
+  75% {
+    transform: translateX(8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ob,
+  .ob:hover,
+  .ob:active {
+    transition: none;
+  }
+}

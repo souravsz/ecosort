@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="./ecosort-art.js"></script>
+<style>body{margin:0;background:#eef0e9;font-family:'Outfit',sans-serif;color:#1e3319}a{color:#4a7a2c;text-decoration:none}a:hover{color:#1e3319}
+@keyframes gfall{from{top:-140px}to{top:calc(100% - 140px)}}
+@keyframes sway{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg)}}
+@keyframes gone{to{transform:scale(0) translateY(60px);opacity:0}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}</style>
+</helmet>
+<div style="container-type:inline-size;background:#eef0e9;font-family:'Outfit',sans-serif;color:#1e3319" onMouseEnter="{{ activate }}" onMouseLeave="{{ deactivate }}">
+<div style="max-width:1100px;margin:0 auto;padding:clamp(14px,3cqi,32px);box-sizing:border-box;display:flex;flex-direction:column;gap:16px">
+  <header style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+    <button style="display:flex;align-items:center;gap:8px;background:#fff;border:2px solid #1e3319;border-radius:999px;padding:8px 16px 8px 8px;font-family:inherit;font-size:15px;font-weight:600;color:#1e3319;cursor:pointer;box-shadow:3px 3px 0 #1e3319" style-active="transform:translate(3px,3px);box-shadow:0 0 0 #1e3319">
+      <span style="width:26px;height:26px;border-radius:50%;background:#4a7a2c;border:2px solid #1e3319;display:grid;place-items:center;box-sizing:border-box"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round"><path d="M5 19C5 10 11 5 20 4c-1 9-6 15-15 15z"></path></svg></span>Home
+    </button>
+    <div style="display:flex;gap:10px">
+      <button onClick="{{ togglePause }}" style="background:#fff;border:2px solid #1e3319;border-radius:999px;padding:9px 18px;font-family:inherit;font-size:15px;font-weight:600;color:#1e3319;cursor:pointer;box-shadow:3px 3px 0 #1e3319" style-active="transform:translate(3px,3px);box-shadow:0 0 0 #1e3319">{{ pauseLabel }}</button>
+      <button style="background:#fff;border:2px solid #1e3319;border-radius:999px;padding:9px 18px;font-family:inherit;font-size:15px;font-weight:600;color:#1e3319;cursor:pointer;box-shadow:3px 3px 0 #1e3319" style-active="transform:translate(3px,3px);box-shadow:0 0 0 #1e3319">Settings</button>
+    </div>
+  </header>
+
+  <section style="background:#fff;border:2px solid #1e3319;border-radius:28px;box-shadow:8px 8px 0 #4a7a2c;padding:clamp(16px,2.6cqi,28px);display:flex;flex-direction:column;gap:16px">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px">
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <h1 style="margin:0;font-size:clamp(28px,4cqi,38px);line-height:1;font-weight:800;letter-spacing:-0.03em">Paper Or Peel</h1>
+        <div style="display:flex;flex-wrap:wrap;gap:8px">
+          <span style="background:#dfe8d2;border:1.5px solid #1e3319;border-radius:999px;padding:4px 12px;font-size:13px;font-weight:600">Level 3 · EcoSort India</span>
+          <span style="background:#fff;border:1.5px solid #1e3319;border-radius:999px;padding:4px 12px;font-size:13px;font-weight:600">Target 117 · Item {{ itemNo }} of 11</span>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;flex:1 1 320px;max-width:440px">
+        <div style="background:#f6f7f2;border:2px solid #1e3319;border-radius:16px;padding:10px 14px;display:flex;flex-direction:column;gap:2px">
+          <span style="font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#5d6a58">Stage score</span>
+          <span style="font-size:26px;font-weight:800;line-height:1.1;color:#4a7a2c">{{ stage }}</span>
+          <span style="font-size:12px;color:#5d6a58">Total {{ total }}</span>
+        </div>
+        <div style="background:#f6f7f2;border:2px solid #1e3319;border-radius:16px;padding:10px 14px;display:flex;flex-direction:column;gap:6px">
+          <span style="font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#5d6a58">Lives</span>
+          <div style="display:flex;gap:2px">
+            <sc-for list="{{ hearts }}" as="ht" hint-placeholder-count="3">{{ ht.el }}</sc-for>
+          </div>
+        </div>
+        <div style="background:#f6f7f2;border:2px solid #1e3319;border-radius:16px;padding:10px 14px;display:flex;flex-direction:column;gap:2px">
+          <span style="font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#5d6a58">Item time</span>
+          <span style="{{ timeStyle }}">{{ timeLabel }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="height:10px;background:#eef0e9;border:2px solid #1e3319;border-radius:999px;overflow:hidden">
+      <div style="{{ progressStyle }}"></div>
+    </div>
+
+    <div style="background-color:#f6f7f2;background-image:radial-gradient(#d3d8c9 1.3px,transparent 1.3px);background-size:18px 18px;border:2px solid #1e3319;border-radius:22px;height:clamp(300px,38cqi,400px);position:relative;overflow:hidden">
+      <span style="position:absolute;top:14px;left:14px;z-index:2;background:#fff;border:1.5px solid #1e3319;border-radius:999px;padding:4px 12px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase">Sorting zone · Slow</span>
+      <div style="position:absolute;left:0;right:0;bottom:0;height:14px;background:#dde8cc;border-top:2px dashed #b5c99a"></div>
+      {{ falling }}
+      <sc-if value="{{ paused }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;inset:0;z-index:3;background:rgba(238,240,233,.88);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px">
+          <span style="font-size:28px;font-weight:800;letter-spacing:-0.02em">Paused</span>
+          <button onClick="{{ togglePause }}" style="background:#4a7a2c;color:#fff;border:2px solid #1e3319;border-radius:999px;padding:12px 28px;font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;box-shadow:4px 4px 0 #1e3319">Resume</button>
+        </div>
+      </sc-if>
+      <sc-if value="{{ over }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;inset:0;z-index:3;background:rgba(238,240,233,.92);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:20px">
+          <span style="font-size:28px;font-weight:800;letter-spacing:-0.02em">Out of lives</span>
+          <span style="font-size:15px;color:#5d6a58">Stage score {{ stage }}. Target 117.</span>
+          <button onClick="{{ restart }}" style="margin-top:8px;background:#4a7a2c;color:#fff;border:2px solid #1e3319;border-radius:999px;padding:12px 28px;font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;box-shadow:4px 4px 0 #1e3319">Play again</button>
+        </div>
+      </sc-if>
+    </div>
+
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+      <span style="font-size:14px;font-weight:500;color:#3a4a36">{{ msg }}</span>
+      <span style="flex:none;background:#f6e2c2;border:1.5px solid #1e3319;border-radius:999px;padding:4px 12px;font-size:13px;font-weight:700">Combo {{ combo }}</span>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));gap:10px">
+      <sc-for list="{{ bins }}" as="b" hint-placeholder-count="6">
+        <button onClick="{{ b.pick }}" style="{{ b.style }}">
+          <span style="position:absolute;top:7px;right:10px;font-size:11px;font-weight:700;opacity:.6">{{ b.corner }}</span>
+          {{ b.art }}
+          <span>{{ b.name }}</span>
+        </button>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="background:#fff;border:2px solid #1e3319;border-radius:20px;box-shadow:4px 4px 0 #1e3319;overflow:hidden">
+    <button onClick="{{ toggleJourney }}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;background:none;border:none;padding:14px 18px;font-family:inherit;font-size:15px;font-weight:600;color:#1e3319;cursor:pointer">
+      <span>Your level journey · 3 / 50</span>
+      <span style="{{ chevronStyle }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1e3319" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg></span>
+    </button>
+    <sc-if value="{{ journey }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:4px 18px 18px;display:flex;flex-wrap:wrap;gap:6px">
+        <sc-for list="{{ levels }}" as="lv" hint-placeholder-count="50">
+          <span style="{{ lv.style }}">{{ lv.n }}</span>
+        </sc-for>
+      </div>
+    </sc-if>
+  </section>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;embedded&quot;:{&quot;editor&quot;:null,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  state = { idx:2, stage:13, total:228, lives:3, combo:1, time:6, picked:null, paused:false, over:false, round:0, journey:false, msg:'A fresh start. Make it count.' };
+  items = [['Leftover Roti','roti',0],['Newspaper','paper',1],['Plastic bottle','bottle',1],['Banana peel','banana',0],['Bruised apple','apple',0]];
+  bins = [['Wet','#4a7a2c','#dfe8d2',0],['Dry','#3f6fa8','#d6e2ee',0],['Hazard','#d08a1e','#f6e2c2',5],['E-waste','#6b5fa8','#e2def2',8],['Sanitary','#c0456b','#f2d6df',12],['General','#7a7f74','#e6e8e1',15]];
+  xs = [12,48,30,62,22,55,40,18,66,35,50];
+  cur(){return this.items[this.state.idx%this.items.length]}
+  componentDidMount(){
+    this.active=!this.props.embedded;
+    this.onKey=e=>{if(!this.active)return;const n=+e.key;if(n>=1&&n<=6)this.pick(n-1);if(e.key==='p')this.togglePause()};
+    window.addEventListener('keydown',this.onKey);
+    if(!window.EcoArt)this.w=setInterval(()=>{if(window.EcoArt){clearInterval(this.w);this.forceUpdate()}},60);
+    this.iv=setInterval(()=>{const s=this.state;if(s.paused||s.over||s.picked!==null)return;if(s.time<=1)this.resolve(-1);else this.setState({time:s.time-1})},1000);
+  }
+  componentWillUnmount(){window.removeEventListener('keydown',this.onKey);clearInterval(this.iv);clearInterval(this.w);clearTimeout(this.t)}
+  togglePause(){if(!this.state.over)this.setState(s=>({paused:!s.paused}))}
+  pick(n){
+    const s=this.state;if(s.paused||s.over||s.picked!==null)return;
+    const b=this.bins[n];if(b[3]){this.setState({msg:`${b[0]} unlocks at level ${b[3]}.`});return}
+    this.resolve(n);
+  }
+  resolve(n){
+    const s=this.state,[name,,ans]=this.cur(),ok=n===ans,pts=4+s.time+(s.combo-1)*2,lives=ok?s.lives:s.lives-1;
+    this.setState({picked:n,stage:s.stage+(ok?pts:0),total:s.total+(ok?pts:0),combo:ok?s.combo+1:1,lives,
+      msg:ok?`Nice sort! +${pts}`:`${n<0?'Too slow.':'Not quite.'} ${name} goes in ${this.bins[ans][0]}.`});
+    this.t=setTimeout(()=>{if(lives<=0){this.setState({over:true});return}this.setState(s=>({picked:null,time:6,idx:(s.idx+1)%11,round:s.round+1}))},1100);
+  }
+  restart(){clearTimeout(this.t);this.setState(s=>({idx:0,stage:0,lives:3,combo:1,time:6,picked:null,over:false,paused:false,round:s.round+1,msg:'A fresh start. Make it count.'}))}
+  renderVals(){
+    const s=this.state,h=React.createElement,A=window.EcoArt,[name,kind,ans]=this.cur(),res=s.picked!==null,ok=res&&s.picked===ans;
+    return {
+      itemNo:s.idx+1, stage:s.stage, total:s.total, combo:s.combo, msg:s.msg, paused:s.paused, over:s.over, journey:s.journey,
+      pauseLabel:s.paused?'Resume':'Pause',
+      activate:()=>{this.active=true}, deactivate:()=>{if(this.props.embedded)this.active=false},
+      togglePause:()=>this.togglePause(), restart:()=>this.restart(), toggleJourney:()=>this.setState(x=>({journey:!x.journey})),
+      timeLabel:s.time+'s',
+      timeStyle:{fontSize:26,fontWeight:800,lineHeight:1.1,color:s.time<=2?'#c0456b':'#1e3319',transition:'color .2s'},
+      progressStyle:{height:'100%',width:((s.idx+1)/11*100)+'%',background:'#4a7a2c',transition:'width .4s'},
+      chevronStyle:{display:'grid',transform:s.journey?'rotate(180deg)':'none',transition:'transform .2s'},
+      hearts:[0,1,2].map(n=>({el:A?A.heart(h,n<s.lives,n):null})),
+      falling:h('div',{key:s.round,style:{position:'absolute',left:`calc(${this.xs[s.idx]/66} * (100% - 150px))`,width:150,animation:'gfall 6s linear both',animationPlayState:(res||s.paused||s.over)?'paused':'running'}},
+        h('div',{style:{display:'flex',flexDirection:'column',alignItems:'center',gap:10,animation:res?(ok?'gone .45s .2s ease-in forwards':'shake .4s'):'none'}},
+          h('div',{style:{animation:'sway 1.8s ease-in-out infinite'}},A?A.item(h,kind):null),
+          h('span',{style:{background:'#1e3319',color:'#fff',padding:'8px 18px',borderRadius:999,fontWeight:700,fontSize:16,whiteSpace:'nowrap',boxShadow:'3px 3px 0 #c9dcae'}},name))),
+      bins:this.bins.map(([bn,c,bg,lock],n)=>{
+        const hit=res&&n===ans, wrong=res&&n===s.picked&&!ok, dim=res&&!hit&&!wrong&&!lock;
+        return {name:bn,corner:lock?(A?A.lock(h):null):n+1,pick:()=>this.pick(n),art:A?A.bin(h,c,1.05,!!lock):null,
+          style:{position:'relative',background:lock?'#f1f2ed':bg,border:lock?'2px dashed #9aa293':'2px solid #1e3319',borderRadius:16,padding:'18px 6px 12px',
+            display:'flex',flexDirection:'column',alignItems:'center',gap:8,cursor:lock?'not-allowed':'pointer',fontFamily:'inherit',fontSize:15,fontWeight:600,
+            color:lock?'#7a7f74':'#1e3319',boxShadow:lock?'none':hit?`0 0 0 3px ${c}`:'3px 3px 0 #1e3319',transform:hit?'translateY(-4px)':'none',
+            opacity:dim?.5:1,animation:wrong?'shake .4s':'none',transition:'all .2s'}};
+      }),
+      levels:Array.from({length:50},(_,n)=>({n:n+1,style:{width:26,height:26,borderRadius:'50%',display:'grid',placeItems:'center',fontSize:11,fontWeight:700,boxSizing:'border-box',
+        background:n<2?'#4a7a2c':n===2?'#fff':'#eef0e9',color:n<2?'#fff':n===2?'#1e3319':'#9aa293',border:n<=2?'2px solid #1e3319':'1.5px solid #d0d4c8',boxShadow:n===2?'0 0 0 3px #c9dcae':'none'}}))
+    };
+  }
+}
+</script>
+</body>
+</html>

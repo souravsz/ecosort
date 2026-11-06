@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#eef0e9;font-family:'Outfit',sans-serif;color:#1e3319}a{color:#4a7a2c;text-decoration:none}a:hover{color:#1e3319}
+@keyframes pop{0%{transform:scale(.6) rotate(-8deg);opacity:0}70%{transform:scale(1.06) rotate(2deg);opacity:1}100%{transform:scale(1) rotate(-2deg)}}
+@keyframes sprout{0%{transform:scale(0)}80%{transform:scale(1.2)}100%{transform:scale(1)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}</style>
+</helmet>
+<div style="min-height:100vh;overflow:hidden;position:relative">
+<div style="max-width:1200px;margin:0 auto;padding:28px 32px 72px;box-sizing:border-box;position:relative">
+  <header style="display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap">
+    <div style="display:flex;align-items:center;gap:10px;font-weight:800;font-size:24px;letter-spacing:-0.02em">
+      <div style="width:36px;height:36px;border-radius:50%;background:#4a7a2c;border:2px solid #1e3319;display:grid;place-items:center">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="M5 19C5 10 11 5 20 4c-1 9-6 15-15 15z"></path><path d="M5 19l8-8"></path></svg>
+      </div>ecosort
+    </div>
+    <nav style="display:flex;align-items:center;gap:28px;flex-wrap:wrap;font-size:16px;font-weight:500">
+      <a href="#" style="color:#3a4a36" style-hover="color:#4a7a2c">How it works</a>
+      <a href="#" style="color:#3a4a36" style-hover="color:#4a7a2c">For schools</a>
+      <a href="#" style="color:#3a4a36" style-hover="color:#4a7a2c">For organisations</a>
+      <a href="#" style="background:#4a7a2c;color:#fff;padding:10px 22px;border-radius:999px;font-weight:600;border:2px solid #1e3319;box-shadow:3px 3px 0 #1e3319;transition:transform .15s,box-shadow .15s" style-hover="transform:translate(-1px,-1px);box-shadow:4px 4px 0 #1e3319;color:#fff" style-active="transform:translate(3px,3px);box-shadow:0 0 0 #1e3319">Play free</a>
+    </nav>
+  </header>
+
+  <main style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:72px;align-items:center;margin-top:80px">
+    <section style="display:flex;flex-direction:column;gap:28px;position:relative;z-index:1">
+      <span style="align-self:flex-start;display:flex;align-items:center;gap:8px;background:#fff;border:2px solid #1e3319;border-radius:999px;padding:6px 16px 6px 8px;font-size:15px;font-weight:600">
+        <span style="width:20px;height:20px;border-radius:50%;background:#dfe8d2;border:1.5px solid #1e3319"></span>Free for every school
+      </span>
+      <h1 style="margin:0;font-size:clamp(48px,6.4vw,84px);line-height:.98;font-weight:800;letter-spacing:-0.04em">
+        Learn to <span style="background:linear-gradient(transparent 62%,#c9dcae 62%,#c9dcae 92%,transparent 92%);padding:0 4px">sort.</span><br>Learn to <span style="color:#4a7a2c">care.</span>
+      </h1>
+      <div style="display:flex;flex-direction:column;gap:8px;font-size:clamp(18px,1.8vw,22px);line-height:1.4;text-wrap:pretty;max-width:34ch">
+        <p style="margin:0;font-weight:600">A better waste habit starts with understanding.</p>
+        <p style="margin:0;color:#5d6a58">For our homes, our workplaces—and the people who handle what we leave behind.</p>
+      </div>
+      <div style="display:flex;gap:14px;flex-wrap:wrap">
+        <a href="#" style="background:#4a7a2c;color:#fff;padding:15px 28px;border-radius:999px;font-weight:600;font-size:17px;border:2px solid #1e3319;box-shadow:4px 4px 0 #1e3319;transition:transform .15s,box-shadow .15s" style-hover="transform:translate(-2px,-2px);box-shadow:6px 6px 0 #1e3319;color:#fff" style-active="transform:translate(4px,4px);box-shadow:0 0 0 #1e3319">Start sorting</a>
+        <a href="#" style="background:#fff;color:#1e3319;padding:15px 28px;border-radius:999px;font-weight:600;font-size:17px;border:2px solid #1e3319;box-shadow:4px 4px 0 #1e3319;transition:transform .15s,box-shadow .15s" style-hover="transform:translate(-2px,-2px);box-shadow:6px 6px 0 #1e3319;color:#1e3319" style-active="transform:translate(4px,4px);box-shadow:0 0 0 #1e3319">Create a class game</a>
+      </div>
+      <div style="display:flex;align-items:center;gap:16px;margin-top:4px">
+        <div style="display:flex">
+          <span style="width:34px;height:34px;border-radius:50%;background:#4a7a2c;border:2px solid #1e3319;display:grid;place-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"><path d="M5 19C5 10 11 5 20 4c-1 9-6 15-15 15z"></path></svg></span>
+          <span style="width:34px;height:34px;border-radius:50%;background:#3f6fa8;border:2px solid #1e3319;margin-left:-8px;display:grid;place-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linejoin="round"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"></path></svg></span>
+          <span style="width:34px;height:34px;border-radius:50%;background:#c0456b;border:2px solid #1e3319;margin-left:-8px;display:grid;place-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linejoin="round"><path d="M12 3s6 7 6 11a6 6 0 0 1-12 0c0-4 6-11 6-11z"></path></svg></span>
+          <span style="width:34px;height:34px;border-radius:50%;background:#d08a1e;border:2px solid #1e3319;margin-left:-8px;display:grid;place-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linejoin="round"><path d="M13 2L5 14h6l-1 8 8-12h-6z"></path></svg></span>
+        </div>
+        <p style="margin:0;font-size:15px;line-height:1.4;color:#5d6a58"><strong style="color:#1e3319;font-weight:600">Wet, dry, sanitary and special care.</strong><br>The same four bins your municipality collects.</p>
+      </div>
+    </section>
+
+    <section style="position:relative">
+      <div style="position:absolute;width:115%;aspect-ratio:1;border-radius:50%;background:#dde8cc;left:-22%;top:50%;transform:translateY(-50%);z-index:0"></div>
+      <div style="position:absolute;inset:0;background:#4a7a2c;border:2px solid #1e3319;border-radius:28px;transform:rotate(3deg) translate(10px,8px);z-index:0"></div>
+      <div style="position:relative;z-index:1;background:#fff;border:2px solid #1e3319;border-radius:28px;padding:24px;display:flex;flex-direction:column;gap:18px">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start">
+          <div>
+            <div style="font-weight:700;font-size:21px;letter-spacing:-0.01em">Sample round</div>
+            <div style="font-size:14px;color:#5d6a58">Item {{ itemNo }} of 6</div>
+          </div>
+          <div style="border:2px solid #1e3319;border-radius:999px;padding:4px 14px;font-size:14px;font-weight:500">Score <strong style="font-size:17px">{{ score }}</strong></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:center">
+          <div style="display:flex;gap:8px">
+            <sc-for list="{{ garden }}" as="g" hint-placeholder-count="6">{{ g.el }}</sc-for>
+          </div>
+          <span style="font-size:13px;color:#5d6a58">Each right answer plants something here.</span>
+        </div>
+        <div style="background-color:#f6f7f2;background-image:radial-gradient(#d8dccf 1.2px,transparent 1.2px);background-size:16px 16px;border:2px solid #1e3319;border-radius:20px;padding:20px;min-height:170px;display:flex;flex-direction:column;align-items:center;gap:10px;position:relative">
+          <span style="align-self:flex-start;font-size:13px;font-weight:600;color:#3a4a36">Which bin?</span>
+          {{ itemCard }}
+          <span style="font-size:14px;font-weight:600;min-height:20px;color:{{ feedbackColor }}">{{ feedback }}</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:14px">
+          <span style="width:40px;height:40px;flex:none;border-radius:50%;border:2px solid #1e3319;display:grid;place-items:center;font-weight:700">{{ left }}</span>
+          <div style="font-size:14px;line-height:1.35;color:#5d6a58"><strong style="color:#1e3319;font-weight:600;font-size:15px">Pick the right bin</strong><br>Tap a bin, or press 1 to 4 on your keyboard.</div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px">
+          <sc-for list="{{ bins }}" as="b" hint-placeholder-count="4">
+            <button onClick="{{ b.pick }}" style="{{ b.style }}">
+              <span style="position:absolute;top:6px;right:9px;font-size:11px;font-weight:600;color:#1e3319;opacity:.55">{{ b.key }}</span>
+              <span style="{{ b.dot }}">{{ b.icon }}</span>
+              <span>{{ b.name }}</span>
+            </button>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { i: 0, score: 0, picked: null, hits: [] };
+  items = [['Banana peel',0],['Plastic bottle',1],['Used tissue',2],['Battery',3],['Apple core',0],['Newspaper',1]];
+  bins = [['Wet','#4a7a2c','#dfe8d2','M5 19C5 10 11 5 20 4c-1 9-6 15-15 15z'],['Dry','#3f6fa8','#d6e2ee','M12 3l8 4.5v9L12 21l-8-4.5v-9z'],['Sanitary','#c0456b','#f2d6df','M12 3s6 7 6 11a6 6 0 0 1-12 0c0-4 6-11 6-11z'],['Special care','#d08a1e','#f6e2c2','M13 2L5 14h6l-1 8 8-12h-6z']];
+  componentDidMount(){ this.onKey=e=>{const n=+e.key; if(n>=1&&n<=4) this.pick(n-1)}; window.addEventListener('keydown',this.onKey); }
+  componentWillUnmount(){ window.removeEventListener('keydown',this.onKey); clearTimeout(this.t); }
+  pick(n){
+    if(this.state.picked!==null) return;
+    const ok=this.items[this.state.i][1]===n;
+    this.setState(s=>({picked:n,score:s.score+(ok?1:0),hits:ok?[...s.hits,s.i]:s.hits}));
+    this.t=setTimeout(()=>this.setState(s=>s.i===5?{picked:null,i:0,score:0,hits:[]}:{picked:null,i:s.i+1}),1100);
+  }
+  renderVals(){
+    const {i,score,picked,hits}=this.state, ans=this.items[i][1], h=React.createElement;
+    const ok=picked!==null&&picked===ans;
+    return {
+      itemNo:i+1, score, left:6-i,
+      feedback: picked===null?'':ok?'Right bin!':`That goes in ${this.bins[ans][0]}.`,
+      feedbackColor: picked===null?'#1e3319':ok?'#4a7a2c':'#c0456b',
+      itemCard: h('div',{key:i,style:{animation:'pop .45s cubic-bezier(.3,1.4,.5,1) both',marginTop:12}},
+        h('div',{style:{animation:'float 3s ease-in-out .5s infinite'}},
+          h('span',{style:{display:'inline-block',background:'#1e3319',color:'#fff',padding:'12px 24px',borderRadius:999,fontWeight:700,fontSize:20,boxShadow:'4px 4px 0 #c9dcae'}},this.items[i][0]))),
+      garden:[0,1,2,3,4,5].map(n=>({el:h('span',{key:n,style:{width:26,height:26,borderRadius:'50%',display:'grid',placeItems:'center',background:'#f0e6d8',border:'2px solid #8a6a45'}},
+        hits.includes(n)?h('span',{style:{width:14,height:14,borderRadius:'50% 0',background:'#4a7a2c',animation:'sprout .4s ease-out both'}}):null)})),
+      bins:this.bins.map(([name,c,bg,d],n)=>{
+        const sel=picked!==null&&(n===ans||n===picked), dim=picked!==null&&!sel;
+        return {name,key:n+1,pick:()=>this.pick(n),
+          icon:h('svg',{width:18,height:18,viewBox:'0 0 24 24',fill:'none',stroke:'#fff',strokeWidth:2.4,strokeLinejoin:'round',strokeLinecap:'round'},h('path',{d})),
+          dot:{width:42,height:42,borderRadius:'50%',background:c,border:'2px solid #1e3319',display:'grid',placeItems:'center'},
+          style:{position:'relative',background:bg,border:'2px solid #1e3319',borderRadius:16,padding:'16px 4px 12px',
+            display:'flex',flexDirection:'column',alignItems:'center',gap:8,cursor:'pointer',fontFamily:'inherit',fontSize:15,fontWeight:600,color:'#1e3319',
+            boxShadow:sel&&n===ans?`0 0 0 3px ${c}`:'3px 3px 0 #1e3319',transform:sel&&n===ans?'translateY(-4px)':'none',
+            opacity:dim?.45:1,transition:'all .2s'}};
+      })
+    };
+  }
+}
+</script>
+</body>
+</html>

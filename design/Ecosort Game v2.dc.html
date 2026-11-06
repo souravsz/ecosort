@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="./ecosort-art.js"></script>
+<script src="./image-slot.js"></script>
+<style>body{margin:0;background:#dcbf92;font-family:'Fredoka',sans-serif;color:#1e3319}a{color:#4a7a2c;text-decoration:none}a:hover{color:#1e3319}
+@keyframes gfall{from{top:44px}to{top:calc(100% - 164px)}}
+@keyframes gfallm{from{top:36px}to{top:calc(100% - 150px)}}
+@keyframes pop{0%{transform:scale(.6);opacity:0}70%{transform:scale(1.06);opacity:1}100%{transform:scale(1)}}
+@keyframes gone{to{transform:scale(0) translateY(30px);opacity:0}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}</style>
+</helmet>
+<sc-if value="{{ desktop }}" hint-placeholder-val="{{ true }}">
+<div style="container-type:inline-size;font-family:'Fredoka',sans-serif;color:#1e3319;background-color:#dcbf92;background-image:repeating-linear-gradient(0deg,transparent 0 158px,rgba(110,70,30,.22) 158px 160px),repeating-linear-gradient(0deg,rgba(110,70,30,.05) 0 1px,transparent 1px 7px);min-height:100%" onMouseEnter="{{ activate }}" onMouseLeave="{{ deactivate }}">
+<div style="{{ screenStyleD }}">
+
+  <header style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+    <button style="display:flex;align-items:center;gap:8px;background:#fbf8f0;border:2px solid #1e3319;border-radius:999px;padding:7px 16px 7px 7px;font-family:inherit;font-size:16px;font-weight:600;color:#1e3319;cursor:pointer;box-shadow:3px 3px 0 #1e3319" style-active="transform:translate(3px,3px);box-shadow:0 0 0 #1e3319">
+      <span style="width:28px;height:28px;border-radius:50%;background:#4a7a2c;border:2px solid #1e3319;display:grid;place-items:center;box-sizing:border-box"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round"><path d="M5 19C5 10 11 5 20 4c-1 9-6 15-15 15z"></path></svg></span>Home
+    </button>
+    <div style="display:flex;gap:10px">
+      <button onClick="{{ togglePause }}" style="background:#fbf8f0;border:2px solid #1e3319;border-radius:999px;padding:9px 18px;font-family:inherit;font-size:16px;font-weight:600;color:#1e3319;cursor:pointer;box-shadow:3px 3px 0 #1e3319" style-active="transform:translate(3px,3px);box-shadow:0 0 0 #1e3319">{{ pauseLabel }}</button>
+      <button style="background:#fbf8f0;border:2px solid #1e3319;border-radius:999px;padding:9px 18px;font-family:inherit;font-size:16px;font-weight:600;color:#1e3319;cursor:pointer;box-shadow:3px 3px 0 #1e3319" style-active="transform:translate(3px,3px);box-shadow:0 0 0 #1e3319">Settings</button>
+    </div>
+  </header>
+
+  <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:stretch">
+    <div style="flex:2 1 300px;position:relative;background:#fbf8f0;border:2px solid #1e3319;border-radius:6px;box-shadow:4px 4px 0 #1e3319;padding:18px 20px 16px;transform:rotate(-1deg);display:flex;flex-direction:column;gap:10px">
+      <span style="position:absolute;top:-11px;left:28px;width:76px;height:20px;background:rgba(160,196,120,.85);transform:rotate(-4deg)"></span>
+      <h1 style="margin:0;font-size:clamp(28px,4cqi,40px);line-height:1;font-weight:700;letter-spacing:-0.01em">Paper Or Peel</h1>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        <span style="background:#dfe8d2;border:1.5px solid #1e3319;border-radius:999px;padding:3px 12px;font-size:13px;font-weight:600">Level 3 · EcoSort India</span>
+        <span style="background:#fff;border:1.5px solid #1e3319;border-radius:999px;padding:3px 12px;font-size:13px;font-weight:600">Target 117 · Item {{ itemNo }} of 11</span>
+      </div>
+    </div>
+    <div style="flex:1 1 110px;position:relative;background:#fbf8f0;border:2px solid #1e3319;border-radius:6px;box-shadow:4px 4px 0 #1e3319;padding:14px 16px;transform:rotate(1deg);display:flex;flex-direction:column;justify-content:center;gap:2px">
+      <span style="position:absolute;top:-10px;left:50%;margin-left:-26px;width:52px;height:18px;background:rgba(160,196,120,.85);transform:rotate(3deg)"></span>
+      <span style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#5d6a58">Stage score</span>
+      <span style="font-size:32px;font-weight:700;line-height:1;color:#4a7a2c">{{ stage }}</span>
+      <span style="font-size:13px;color:#5d6a58">Total {{ total }}</span>
+    </div>
+    <div style="flex:1 1 110px;position:relative;background:#fbf8f0;border:2px solid #1e3319;border-radius:6px;box-shadow:4px 4px 0 #1e3319;padding:14px 16px;transform:rotate(-1.5deg);display:flex;flex-direction:column;justify-content:center;gap:8px">
+      <span style="position:absolute;top:-10px;left:50%;margin-left:-26px;width:52px;height:18px;background:rgba(160,196,120,.85);transform:rotate(-3deg)"></span>
+      <span style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#5d6a58">Lives</span>
+      <div style="display:flex;gap:2px">
+        <sc-for list="{{ hearts }}" as="ht" hint-placeholder-count="3">{{ ht.el }}</sc-for>
+      </div>
+    </div>
+    <div style="flex:1 1 110px;position:relative;background:#fbf8f0;border:2px solid #1e3319;border-radius:6px;box-shadow:4px 4px 0 #1e3319;padding:14px 16px;transform:rotate(1.2deg);display:flex;flex-direction:column;justify-content:center;gap:2px">
+      <span style="position:absolute;top:-10px;left:50%;margin-left:-26px;width:52px;height:18px;background:rgba(160,196,120,.85);transform:rotate(2deg)"></span>
+      <span style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#5d6a58">Item time</span>
+      <span style="{{ timeStyle }}">{{ timeLabel }}</span>
+    </div>
+  </div>
+
+  <div style="height:16px;background-color:#fbf8f0;background-image:repeating-linear-gradient(90deg,#1e3319 0 1.5px,transparent 1.5px 12px);background-size:100% 6px;background-repeat:repeat-x;border:2px solid #1e3319;border-radius:4px;overflow:hidden;box-shadow:3px 3px 0 #1e3319">
+    <div style="{{ progressStyle }}"></div>
+  </div>
+
+  <div style="position:relative;flex:1;min-height:140px;background-color:#3d6a2a;background-image:linear-gradient(rgba(255,255,255,.2) 1.5px,transparent 1.5px),linear-gradient(90deg,rgba(255,255,255,.2) 1.5px,transparent 1.5px),linear-gradient(rgba(255,255,255,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.09) 1px,transparent 1px);background-size:120px 120px,120px 120px,24px 24px,24px 24px;background-position:-1px -1px;border:2px solid #1e3319;border-radius:18px;box-shadow:6px 6px 0 #1e3319">
+    <span style="position:absolute;top:14px;left:14px;z-index:1;background:#fbf8f0;border:1.5px solid #1e3319;border-radius:4px;padding:4px 12px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;transform:rotate(-2deg)">Sorting zone · Slow</span>
+    <span style="position:absolute;top:16px;right:16px;z-index:1;font-size:13px;font-weight:500;color:#dfe8d2">{{ dragHint }}</span>
+    {{ falling }}
+    <sc-if value="{{ paused }}" hint-placeholder-val="{{ false }}">
+      <div style="position:absolute;top:56px;left:50%;transform:translateX(-50%) rotate(-1deg);z-index:30;width:min(340px,86%);background:#fbf8f0;border:2px solid #1e3319;border-radius:6px;box-shadow:4px 4px 0 #1e3319;padding:16px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;box-sizing:border-box">
+        <span style="font-size:24px;font-weight:700">Paused</span>
+        <span style="font-size:14px;color:#5d6a58">Drop your own images onto the item and the bins.</span>
+        <button onClick="{{ togglePause }}" style="background:#4a7a2c;color:#fff;border:2px solid #1e3319;border-radius:999px;padding:10px 26px;font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;box-shadow:3px 3px 0 #1e3319">Resume</button>
+      </div>
+    </sc-if>
+    <sc-if value="{{ over }}" hint-placeholder-val="{{ false }}">
+      <div style="position:absolute;inset:0;z-index:30;border-radius:16px;background:rgba(30,51,25,.55);display:grid;place-items:center;padding:20px">
+        <div style="background:#fbf8f0;border:2px solid #1e3319;border-radius:6px;box-shadow:5px 5px 0 #1e3319;padding:22px 28px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;transform:rotate(-1.5deg)">
+          <span style="font-size:28px;font-weight:700">Out of lives</span>
+          <span style="font-size:15px;color:#5d6a58">Stage score {{ stage }}. Target 117.</span>
+          <button onClick="{{ restart }}" style="margin-top:6px;background:#4a7a2c;color:#fff;border:2px solid #1e3319;border-radius:999px;padding:11px 28px;font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;box-shadow:3px 3px 0 #1e3319">Play again</button>
+        </div>
+      </div>
+    </sc-if>
+  </div>
+
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;background:#fbf8f0;border:2px solid #1e3319;border-radius:6px;box-shadow:3px 3px 0 #1e3319;padding:10px 14px">
+    <span style="font-size:15px;font-weight:500">{{ msg }}</span>
+    <span style="flex:none;border:2px solid #d08a1e;color:#a8681a;border-radius:6px;padding:2px 10px;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;transform:rotate(-4deg)">Combo {{ combo }}</span>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;padding-top:4px">
+    <sc-for list="{{ bins }}" as="b" hint-placeholder-count="6">
+      <div data-bin="{{ b.i }}" onClick="{{ b.pick }}" style="{{ b.style }}">
+        <div style="{{ binBoxStyle }}">
+          <span style="position:absolute;bottom:-6px;left:50%;width:96px;margin-left:-48px;height:16px;border-radius:50%;background:rgba(70,40,15,.35);filter:blur(3px)"></span>
+          <div style="position:relative">{{ b.art }}</div>
+        </div>
+        <div style="{{ b.tagStyle }}">
+          <span style="display:flex;align-items:center;gap:4px">{{ b.corner }}</span>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ mobile }}" hint-placeholder-val="{{ false }}">
+<div style="font-family:'Fredoka',sans-serif;color:#1e3319;background-color:#dcbf92;background-image:repeating-linear-gradient(0deg,transparent 0 158px,rgba(110,70,30,.22) 158px 160px),repeating-linear-gradient(0deg,rgba(110,70,30,.05) 0 1px,transparent 1px 7px)" onMouseEnter="{{ activate }}" onMouseLeave="{{ deactivate }}">
+  <div style="{{ screenStyle }}">
+    <header style="display:flex;align-items:center;gap:8px">
+      <button aria-label="Home" style="width:44px;height:44px;flex:none;border-radius:50%;background:#fbf8f0;border:2px solid #1e3319;box-shadow:2px 2px 0 #1e3319;display:grid;place-items:center;cursor:pointer;padding:0">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e3319" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l8-7 8 7v9h-5v-6H9v6H4z"></path></svg>
+      </button>
+      <div style="flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.1">
+        <span style="font-size:20px;font-weight:700">Paper Or Peel</span>
+        <span style="font-size:12px;font-weight:500;color:#3a2a14">Level 3 · EcoSort India</span>
+      </div>
+      <button onClick="{{ togglePause }}" aria-label="Pause" style="width:44px;height:44px;flex:none;border-radius:50%;background:#fbf8f0;border:2px solid #1e3319;box-shadow:2px 2px 0 #1e3319;display:flex;align-items:center;justify-content:center;gap:4px;cursor:pointer;padding:0">
+        <span style="width:4px;height:14px;background:#1e3319;border-radius:2px"></span>
+        <span style="width:4px;height:14px;background:#1e3319;border-radius:2px"></span>
+      </button>
+      <button aria-label="Settings" style="width:44px;height:44px;flex:none;border-radius:50%;background:#fbf8f0;border:2px solid #1e3319;box-shadow:2px 2px 0 #1e3319;display:grid;place-items:center;cursor:pointer;padding:0">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e3319" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"></path><circle cx="16" cy="7" r="2"></circle><circle cx="10" cy="17" r="2"></circle></svg>
+      </button>
+    </header>
+
+    <div style="position:relative;background:#fbf8f0;border:2px solid #1e3319;border-radius:6px;box-shadow:3px 3px 0 #1e3319;display:grid;grid-template-columns:1fr 1fr 1fr">
+      <span style="position:absolute;top:-9px;left:50%;margin-left:-26px;width:52px;height:16px;background:rgba(160,196,120,.85);transform:rotate(-3deg)"></span>
+      <div style="padding:8px 10px;display:flex;flex-direction:column;gap:1px">
+        <span style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#5d6a58">Stage score</span>
+        <span style="font-size:22px;font-weight:700;line-height:1;color:#4a7a2c">{{ stage }}</span>
+        <span style="font-size:11px;color:#5d6a58">Total {{ total }}</span>
+      </div>
+      <div style="padding:8px 10px;display:flex;flex-direction:column;gap:4px;border-left:1.5px dashed #c4b89c;border-right:1.5px dashed #c4b89c">
+        <span style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#5d6a58">Lives</span>
+        <div style="display:flex">
+          <sc-for list="{{ hearts }}" as="ht" hint-placeholder-count="3">{{ ht.el }}</sc-for>
+        </div>
+      </div>
+      <div style="padding:8px 10px;display:flex;flex-direction:column;gap:1px">
+        <span style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#5d6a58">Item time</span>
+        <span style="{{ timeStyleM }}">{{ timeLabel }}</span>
+        <span style="font-size:11px;color:#5d6a58">Combo {{ combo }}</span>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:8px">
+      <div style="flex:1;height:10px;background:#fbf8f0;border:2px solid #1e3319;border-radius:4px;overflow:hidden">
+        <div style="{{ progressStyle }}"></div>
+      </div>
+      <span style="flex:none;font-size:12px;font-weight:600;background:#fbf8f0;border:1.5px solid #1e3319;border-radius:4px;padding:1px 6px">Target 117 · {{ itemNo }}/11</span>
+    </div>
+
+    <div style="position:relative;flex:1;min-height:150px;background-color:#3d6a2a;background-image:linear-gradient(rgba(255,255,255,.2) 1.5px,transparent 1.5px),linear-gradient(90deg,rgba(255,255,255,.2) 1.5px,transparent 1.5px),linear-gradient(rgba(255,255,255,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.09) 1px,transparent 1px);background-size:96px 96px,96px 96px,24px 24px,24px 24px;background-position:-1px -1px;border:2px solid #1e3319;border-radius:16px;box-shadow:4px 4px 0 #1e3319">
+      <span style="position:absolute;top:10px;left:10px;z-index:1;background:#fbf8f0;border:1.5px solid #1e3319;border-radius:4px;padding:3px 9px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;transform:rotate(-2deg)">Sorting zone · Slow</span>
+      {{ falling }}
+      <span style="position:absolute;left:10px;right:10px;bottom:10px;z-index:1;text-align:center;font-size:13px;font-weight:500;color:#fbf8f0">{{ msg }}</span>
+      <sc-if value="{{ paused }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;top:48px;left:50%;transform:translateX(-50%) rotate(-1deg);z-index:30;width:86%;background:#fbf8f0;border:2px solid #1e3319;border-radius:6px;box-shadow:4px 4px 0 #1e3319;padding:14px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;box-sizing:border-box">
+          <span style="font-size:22px;font-weight:700">Paused</span>
+          <span style="font-size:13px;color:#5d6a58">Drop your own image onto the item.</span>
+          <button onClick="{{ togglePause }}" style="background:#4a7a2c;color:#fff;border:2px solid #1e3319;border-radius:999px;padding:10px 26px;font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;box-shadow:3px 3px 0 #1e3319">Resume</button>
+        </div>
+      </sc-if>
+      <sc-if value="{{ over }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;inset:0;z-index:30;border-radius:14px;background:rgba(30,51,25,.55);display:grid;place-items:center;padding:16px">
+          <div style="background:#fbf8f0;border:2px solid #1e3319;border-radius:6px;box-shadow:4px 4px 0 #1e3319;padding:18px 22px;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;transform:rotate(-1.5deg)">
+            <span style="font-size:24px;font-weight:700">Out of lives</span>
+            <span style="font-size:14px;color:#5d6a58">Stage score {{ stage }}. Target 117.</span>
+            <button onClick="{{ restart }}" style="margin-top:6px;background:#4a7a2c;color:#fff;border:2px solid #1e3319;border-radius:999px;padding:10px 24px;font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;box-shadow:3px 3px 0 #1e3319">Play again</button>
+          </div>
+        </div>
+      </sc-if>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:4px;align-items:end">
+      <sc-for list="{{ bins }}" as="b" hint-placeholder-count="6">
+        <div data-bin="{{ b.i }}" onClick="{{ b.pick }}" style="{{ b.style }}">
+          <div style="{{ binBoxStyle }}">
+            <span style="position:absolute;bottom:-4px;left:50%;width:50px;margin-left:-25px;height:10px;border-radius:50%;background:rgba(70,40,15,.35);filter:blur(2px)"></span>
+            <div style="position:relative">{{ b.art }}</div>
+          </div>
+          <span style="font-size:10px;font-weight:700;color:#3a2a14;display:flex;align-items:center;gap:2px;min-height:13px">{{ b.cornerM }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  </div>
+</sc-if>
+<div style="container-type:inline-size;font-family:'Fredoka',sans-serif;color:#1e3319;background-color:#dcbf92;background-image:repeating-linear-gradient(0deg,transparent 0 158px,rgba(110,70,30,.22) 158px 160px),repeating-linear-gradient(0deg,rgba(110,70,30,.05) 0 1px,transparent 1px 7px)">
+<div style="max-width:1100px;margin:0 auto;padding:12px clamp(12px,3cqi,32px) 56px;box-sizing:border-box;display:flex;flex-direction:column;gap:28px">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:18px">
+    <div style="position:relative;background:#fbf8f0;border:2px solid #1e3319;border-radius:6px;box-shadow:4px 4px 0 #1e3319;padding:20px;transform:rotate(-.6deg);display:flex;flex-direction:column;gap:14px">
+      <span style="position:absolute;top:-10px;left:28px;width:70px;height:18px;background:rgba(160,196,120,.85);transform:rotate(-4deg)"></span>
+      <div style="display:flex;flex-direction:column;gap:2px">
+        <span style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#5d6a58">This level</span>
+        <span style="font-size:24px;font-weight:700">Level 3 · Paper Or Peel</span>
+      </div>
+      <div style="display:grid;grid-template-columns:auto 1fr;gap:6px 18px;font-size:15px">
+        <span style="color:#5d6a58">Target</span><span style="font-weight:600">117 points</span>
+        <span style="color:#5d6a58">Items</span><span style="font-weight:600">11</span>
+        <span style="color:#5d6a58">Speed</span><span style="font-weight:600">Slow</span>
+        <span style="color:#5d6a58">Bins</span><span style="font-weight:600">Wet, Dry</span>
+      </div>
+      <span style="font-size:14px;color:#3a4a36;border-top:1.5px dashed #c4b89c;padding-top:12px">Clear this level to grow a new plant in your garden.</span>
+    </div>
+    <div style="position:relative;background:#fbf8f0;border:2px solid #1e3319;border-radius:6px;box-shadow:4px 4px 0 #1e3319;padding:20px;transform:rotate(.6deg);display:flex;flex-direction:column;gap:16px">
+      <span style="position:absolute;top:-10px;right:28px;width:70px;height:18px;background:rgba(160,196,120,.85);transform:rotate(3deg)"></span>
+      <span style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#5d6a58">Your progress</span>
+      <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px">
+        <div style="display:flex;flex-direction:column"><span style="font-size:28px;font-weight:700;line-height:1">3<span style="font-size:15px;color:#5d6a58"> / 50</span></span><span style="font-size:13px;color:#5d6a58">Level</span></div>
+        <div style="display:flex;flex-direction:column"><span style="font-size:28px;font-weight:700;line-height:1;color:#4a7a2c">{{ total }}</span><span style="font-size:13px;color:#5d6a58">Total score</span></div>
+        <div style="display:flex;flex-direction:column"><span style="font-size:28px;font-weight:700;line-height:1">{{ plantsGrown }}</span><span style="font-size:13px;color:#5d6a58">Plants grown</span></div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:auto">
+        <a href="Ecosort Achievements.dc.html" style="background:#4a7a2c;color:#fff;border:2px solid #1e3319;border-radius:999px;padding:10px 20px;font-size:15px;font-weight:600;box-shadow:3px 3px 0 #1e3319" style-hover="color:#fff;transform:translate(-1px,-1px)">View achievements</a>
+        <a href="Ecosort Achievements.dc.html?garden=1" style="background:#fbf8f0;color:#1e3319;border:2px solid #1e3319;border-radius:999px;padding:10px 20px;font-size:15px;font-weight:600;box-shadow:3px 3px 0 #1e3319" style-hover="color:#1e3319;transform:translate(-1px,-1px)">Show your garden</a>
+      </div>
+    </div>
+  </div>
+  <section style="background:#fbf8f0;border:2px solid #1e3319;border-radius:6px;box-shadow:3px 3px 0 #1e3319;overflow:hidden">
+    <button onClick="{{ toggleJourney }}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;background:none;border:none;padding:14px 18px;font-family:inherit;font-size:16px;font-weight:600;color:#1e3319;cursor:pointer">
+      <span>Your level journey · 3 / 50</span>
+      <span style="{{ chevronStyle }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1e3319" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg></span>
+    </button>
+    <sc-if value="{{ journey }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:4px 18px 18px;display:flex;flex-wrap:wrap;gap:6px">
+        <sc-for list="{{ levels }}" as="lv" hint-placeholder-count="50">
+          <span style="{{ lv.style }}">{{ lv.n }}</span>
+        </sc-for>
+      </div>
+    </sc-if>
+  </section>
+  <section style="display:flex;flex-direction:column;gap:16px">
+    <h2 style="margin:0;font-size:clamp(22px,3cqi,28px);font-weight:700">Which bin is which</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:14px">
+      <sc-for list="{{ guide }}" as="g" hint-placeholder-count="6">
+        <div style="{{ g.style }}">
+          <div style="flex:none;width:64px;height:80px;display:flex;align-items:flex-end;justify-content:center">{{ g.art }}</div>
+          <div style="display:flex;flex-direction:column;gap:4px;min-width:0">
+            <span style="font-size:18px;font-weight:700">{{ g.name }}</span>
+            <span style="font-size:14px;line-height:1.35;color:#3a4a36">{{ g.examples }}</span>
+            <span style="{{ g.statusStyle }}">{{ g.status }}</span>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+  <section style="display:flex;flex-direction:column;gap:16px">
+    <h2 style="margin:0;font-size:clamp(22px,3cqi,28px);font-weight:700">How to play</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:14px">
+      <div style="background:#fbf8f0;border:2px solid #1e3319;border-radius:6px;box-shadow:3px 3px 0 #1e3319;padding:16px;display:flex;gap:12px;align-items:flex-start">
+        <span style="flex:none;width:32px;height:32px;border-radius:50%;background:#4a7a2c;color:#fff;border:2px solid #1e3319;display:grid;place-items:center;font-weight:700">1</span>
+        <span style="font-size:15px;line-height:1.4">Watch the item slide down the mat. You have 6 seconds.</span>
+      </div>
+      <div style="background:#fbf8f0;border:2px solid #1e3319;border-radius:6px;box-shadow:3px 3px 0 #1e3319;padding:16px;display:flex;gap:12px;align-items:flex-start">
+        <span style="flex:none;width:32px;height:32px;border-radius:50%;background:#4a7a2c;color:#fff;border:2px solid #1e3319;display:grid;place-items:center;font-weight:700">2</span>
+        <span style="font-size:15px;line-height:1.4">Drag it into the right bucket, tap the bucket, or press 1 to 6.</span>
+      </div>
+      <div style="background:#fbf8f0;border:2px solid #1e3319;border-radius:6px;box-shadow:3px 3px 0 #1e3319;padding:16px;display:flex;gap:12px;align-items:flex-start">
+        <span style="flex:none;width:32px;height:32px;border-radius:50%;background:#4a7a2c;color:#fff;border:2px solid #1e3319;display:grid;place-items:center;font-weight:700">3</span>
+        <span style="font-size:15px;line-height:1.4">Right answers score points and build your combo. Wrong ones cost a life.</span>
+      </div>
+    </div>
+  </section>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;artMode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Your images&quot;,&quot;Sketch art&quot;],&quot;default&quot;:&quot;Your images&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;embedded&quot;:{&quot;editor&quot;:null,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  state = { idx:2, stage:13, total:228, lives:3, combo:1, time:6, picked:null, paused:false, over:false, round:0, journey:false, drag:null, msg:'A fresh start. Make it count.' };
+  items = [['Leftover Roti','roti',0],['Newspaper','paper',1],['Plastic bottle','bottle',1],['Banana peel','banana',0],['Bruised apple','apple',0]];
+  bins = [['Wet','#4a7a2c','#dfe8d2',0],['Dry','#3f6fa8','#d6e2ee',0],['Hazard','#d08a1e','#f6e2c2',5],['E-waste','#6b5fa8','#e2def2',8],['Sanitary','#c0456b','#f2d6df',12],['General','#7a7f74','#e6e8e1',15]];
+  examples = ['Food scraps, fruit and vegetable peels, tea leaves, flowers','Paper, cardboard, plastic bottles, metal cans, glass','Paint, cleaning chemicals, expired medicines, tube lights','Phones, chargers, cables, batteries','Diapers, sanitary pads, used tissues, bandages','Anything that fits no other bin, like broken ceramics'];
+  xs = [.1,.7,.4,.9,.2,.6,.5,.15,.85,.35,.75];
+  cur(){return this.items[this.state.idx%this.items.length]}
+  componentDidMount(){
+    this.active=!this.props.embedded;
+    const saved=+localStorage.getItem('ecosort.total');if(saved>0)this.setState({total:saved});
+    this.onKey=e=>{if(!this.active)return;const n=+e.key;if(n>=1&&n<=6)this.pick(n-1);if(e.key==='p')this.togglePause()};
+    window.addEventListener('keydown',this.onKey);
+    if(!window.EcoArt)this.w=setInterval(()=>{if(window.EcoArt){clearInterval(this.w);this.forceUpdate()}},60);
+    this.onResize=()=>this.forceUpdate();window.addEventListener('resize',this.onResize);
+    this.iv=setInterval(()=>{const s=this.state;if(s.paused||s.over||s.picked!==null||s.drag)return;if(s.time<=1)this.resolve(-1);else this.setState({time:s.time-1})},1000);
+  }
+  componentWillUnmount(){window.removeEventListener('keydown',this.onKey);window.removeEventListener('resize',this.onResize);window.removeEventListener('pointermove',this.move);clearInterval(this.iv);clearInterval(this.w);clearTimeout(this.t)}
+  togglePause(){if(!this.state.over&&this.state.picked===null)this.setState(s=>({paused:!s.paused}))}
+  pick(n){
+    const s=this.state;if(s.paused||s.over||s.picked!==null)return;
+    const b=this.bins[n];if(b[3]){this.setState({msg:`${b[0]} unlocks at level ${b[3]}.`});return false}
+    this.resolve(n);return true;
+  }
+  resolve(n){
+    const s=this.state,[name,,ans]=this.cur(),ok=n===ans,pts=4+s.time+(s.combo-1)*2,lives=ok?s.lives:s.lives-1;
+    if(ok)localStorage.setItem('ecosort.total',String(s.total+pts));
+    this.setState({picked:n,stage:s.stage+(ok?pts:0),total:s.total+(ok?pts:0),combo:ok?s.combo+1:1,lives,
+      msg:ok?`Nice sort! +${pts}`:`${n<0?'Too slow.':'Not quite.'} ${name} goes in ${this.bins[ans][0]}.`});
+    this.t=setTimeout(()=>{if(lives<=0){this.setState({over:true});return}this.setState(s=>({picked:null,drag:null,time:6,idx:(s.idx+1)%11,round:s.round+1}))},1000);
+  }
+  restart(){clearTimeout(this.t);this.setState(s=>({idx:0,stage:0,lives:3,combo:1,time:6,picked:null,drag:null,over:false,paused:false,round:s.round+1,msg:'A fresh start. Make it count.'}))}
+  down=e=>{const s=this.state;if(s.picked!==null||s.paused||s.over)return;e.preventDefault();this.sx=e.clientX;this.sy=e.clientY;
+    this.setState({drag:{dx:0,dy:0,live:true}});window.addEventListener('pointermove',this.move);window.addEventListener('pointerup',this.up,{once:true})};
+  move=e=>this.setState({drag:{dx:e.clientX-this.sx,dy:e.clientY-this.sy,live:true}});
+  up=e=>{window.removeEventListener('pointermove',this.move);
+    const el=document.elementsFromPoint(e.clientX,e.clientY).map(x=>x.closest&&x.closest('[data-bin]')).find(Boolean);
+    const n=el?+el.getAttribute('data-bin'):-1;
+    if(n>=0&&this.pick(n)){this.setState(s=>({drag:{...s.drag,live:false}}));return}
+    this.setState({drag:null})};
+  renderVals(){
+    const s=this.state,h=React.createElement,A=window.EcoArt,[name,kind,ans]=this.cur(),res=s.picked!==null,ok=res&&s.picked===ans;
+    const slots=(this.props.artMode??'Your images')!=='Sketch art', d=s.drag;
+    const narrow=this.props.mobile??(window.innerWidth<640), short=!narrow&&!this.props.embedded&&window.innerHeight<780, mobile=narrow||short, IS=mobile?80:110, BS=narrow?.52:short?.72:1;
+    return {
+      plantsGrown:Math.floor(s.total/100),
+      guide:this.bins.map(([bn,c,bg,lock],n)=>({name:bn,examples:this.examples[n],art:A&&A.bucket?A.bucket(h,c,bn,!!lock,.6):null,
+        status:lock?`Unlocks at level ${lock}`:'Open in this level',
+        statusStyle:{alignSelf:'flex-start',marginTop:4,fontSize:12,fontWeight:600,padding:'2px 8px',borderRadius:4,border:lock?'1.5px dashed #9a8f78':'1.5px solid #1e3319',background:lock?'transparent':bg,color:lock?'#7a6e58':'#1e3319'},
+        style:{background:'#fbf8f0',border:'2px solid #1e3319',borderRadius:6,boxShadow:'3px 3px 0 #1e3319',padding:14,display:'flex',gap:14,alignItems:'center',transform:`rotate(${n%2?.5:-.5}deg)`}})),
+      itemNo:s.idx+1, stage:s.stage, total:s.total, combo:s.combo, msg:s.msg, paused:s.paused, over:s.over, journey:s.journey,
+      slots, sketch:!slots, mobile, desktop:!mobile,
+      binBoxStyle:{position:'relative',width:'100%',height:Math.round(128*BS),display:'flex',justifyContent:'center',alignItems:'flex-end'},
+      screenStyleD:{maxWidth:1100,margin:'0 auto',padding:'clamp(14px,2.2cqi,24px) clamp(14px,3cqi,32px) clamp(16px,2.2cqi,24px)',boxSizing:'border-box',display:'flex',flexDirection:'column',gap:'clamp(12px,1.5cqi,16px)',height:this.props.embedded?'900px':'100dvh'},
+      screenStyle:{maxWidth:1100,margin:'0 auto',height:this.props.embedded?'844px':'100dvh',display:'flex',flexDirection:'column',gap:10,padding:'12px 12px 14px',boxSizing:'border-box'},
+      timeStyleM:{fontSize:22,fontWeight:700,lineHeight:1,color:s.time<=2?'#c0456b':'#1e3319'}, pauseLabel:s.paused?'Resume':'Pause', dragHint:'Drag the item into a bin',
+      activate:()=>{this.active=true}, deactivate:()=>{if(this.props.embedded)this.active=false},
+      togglePause:()=>this.togglePause(), restart:()=>this.restart(), toggleJourney:()=>this.setState(x=>({journey:!x.journey})),
+      timeLabel:s.time+'s',
+      timeStyle:{fontSize:32,fontWeight:700,lineHeight:1,color:s.time<=2?'#c0456b':'#1e3319',transition:'color .2s'},
+      progressStyle:{height:'100%',width:((s.idx+1)/11*100)+'%',background:'#4a7a2c',borderRight:'2px solid #1e3319',boxSizing:'border-box',transition:'width .4s'},
+      chevronStyle:{display:'grid',transform:s.journey?'rotate(180deg)':'none',transition:'transform .2s'},
+      hearts:[0,1,2].map(n=>({el:A?A.heart(h,n<s.lives,n):null})),
+      falling:h('div',{key:s.round,onPointerDown:this.down,style:{position:'absolute',left:mobile?`calc(8px + ${this.xs[s.idx]} * (100% - 136px))`:`calc(16px + ${this.xs[s.idx]} * (100% - 182px))`,width:mobile?120:150,zIndex:d?20:2,touchAction:'none',
+          cursor:res?'default':d?'grabbing':'grab',animation:(mobile?'gfallm':'gfall')+' 6s linear both',animationPlayState:(res||s.paused||s.over||d)?'paused':'running'}},
+        h('div',{style:{transform:d?`translate(${d.dx}px,${d.dy}px) rotate(-4deg) scale(1.05)`:'none',transition:d&&d.live?'none':'transform .25s'}},
+          h('div',{style:{display:'flex',flexDirection:'column',alignItems:'center',gap:10,animation:res?(ok?'gone .4s .1s ease-in forwards':'shake .4s'):'pop .35s both'}},
+            h('div',{style:{position:'relative',width:IS,height:IS}},
+              h('div',{style:{position:'absolute',left:14,right:14,bottom:d?-18:-6,height:14,borderRadius:'50%',background:'rgba(0,0,0,.32)',filter:'blur(4px)',transition:'bottom .2s'}}),
+              slots?h('image-slot',{id:'eco-item-'+kind,fit:'contain',shape:'rounded',radius:'12',placeholder:name+' image',style:{position:'absolute',inset:0,width:IS,height:IS,color:'#fbf8f0',pointerEvents:s.paused?'auto':'none'}})
+                   :h('div',{style:{position:'absolute',inset:0,display:'grid',placeItems:'center'}},A?A.item(h,kind,mobile?.95:1.25):null)),
+            h('span',{style:{background:'#fbf8f0',color:'#1e3319',border:'2px solid #1e3319',padding:mobile?'4px 12px':'6px 16px',borderRadius:6,fontWeight:600,fontSize:mobile?14:16,whiteSpace:'nowrap',boxShadow:'3px 3px 0 #1e3319',transform:'rotate(-2deg)'}},name)))),
+      bins:this.bins.map(([bn,c,bg,lock],n)=>{
+        const hit=res&&n===ans, wrong=res&&n===s.picked&&!ok, dim=res&&!hit&&!wrong&&!lock;
+        return {i:n,name:bn,slotId:'eco-bin-'+bn.toLowerCase(),ph:bn+' bin image',
+          corner:lock?[A?h('span',{key:0,style:{display:'grid'}},A.lock(h)):null,`Level ${lock}`]:`Key ${n+1}`,
+          pick:()=>this.pick(n), art:A&&A.bucket?A.bucket(h,c,bn,!!lock,BS):null,
+          cornerM:lock?[A?h('span',{key:0,style:{display:'grid',transform:'scale(.8)'}},A.lock(h)):null,'L'+lock]:n+1,
+          slotStyle:{position:'relative',width:96,height:124,color:'#1e3319',pointerEvents:s.paused?'auto':'none',filter:lock?'grayscale(1)':'none',opacity:lock?.55:1},
+          style:{display:'flex',flexDirection:'column',alignItems:'center',gap:12,cursor:lock?'not-allowed':'pointer',
+            transform:hit?'translateY(-8px)':'none',opacity:dim?.5:1,minWidth:0,animation:wrong?'shake .4s':'none',transition:'transform .2s,opacity .2s'},
+          tagStyle:{display:'flex',alignItems:'center',justifyContent:'center',minWidth:64,padding:'3px 10px',borderRadius:6,boxSizing:'border-box',
+            background:lock?'#ebe6da':hit?c:bg,color:hit?'#fff':lock?'#7a7f74':'#1e3319',border:lock?'2px dashed #9a8f78':'2px solid #1e3319',
+            boxShadow:lock?'none':'2px 2px 0 #1e3319',fontSize:13,fontWeight:600,transform:`rotate(${n%2?2:-2}deg)`,transition:'background .2s,color .2s'}};
+      }),
+      levels:Array.from({length:50},(_,n)=>({n:n+1,style:{width:28,height:28,borderRadius:'50%',display:'grid',placeItems:'center',fontSize:12,fontWeight:600,boxSizing:'border-box',
+        background:n<2?'#4a7a2c':n===2?'#fff':'#efe9dc',color:n<2?'#fff':n===2?'#1e3319':'#9a8f78',border:n<=2?'2px solid #1e3319':'1.5px dashed #c4b89c',boxShadow:n===2?'0 0 0 3px #c9dcae':'none'}}))
+    };
+  }
+}
+</script>
+</body>
+</html>

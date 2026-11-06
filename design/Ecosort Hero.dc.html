@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#eef0e9;font-family:'Outfit',sans-serif;color:#1e3319}a{color:#4a7a2c;text-decoration:none}a:hover{color:#1e3319}</style>
+</helmet>
+<div style="max-width:1200px;margin:0 auto;padding:28px 32px 64px;box-sizing:border-box">
+  <header style="display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap">
+    <div style="display:flex;align-items:center;gap:10px;font-weight:700;font-size:22px">
+      <div style="width:30px;height:30px;border-radius:50%;background:#4a7a2c"></div>ecosort
+    </div>
+    <nav style="display:flex;align-items:center;gap:28px;flex-wrap:wrap;font-size:16px">
+      <a href="#" style="color:#3a4a36">How it works</a>
+      <a href="#" style="color:#3a4a36">For schools</a>
+      <a href="#" style="color:#3a4a36">For organisations</a>
+      <a href="#" style="background:#4a7a2c;color:#fff;padding:10px 20px;border-radius:999px;font-weight:600">Play free</a>
+    </nav>
+  </header>
+
+  <main style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:64px;align-items:center;margin-top:88px">
+    <section style="display:flex;flex-direction:column;gap:28px">
+      <span style="align-self:flex-start;border:1.5px solid #1e3319;border-radius:999px;padding:6px 14px;font-size:15px;font-weight:500">Free for every school</span>
+      <h1 style="margin:0;font-size:clamp(44px,6vw,76px);line-height:1;font-weight:700;letter-spacing:-0.03em">Learn to sort.<br>Learn to care.</h1>
+      <div style="display:flex;flex-direction:column;gap:8px;font-size:clamp(18px,1.8vw,22px);line-height:1.4;text-wrap:pretty">
+        <p style="margin:0;font-weight:500">A better waste habit starts with understanding.</p>
+        <p style="margin:0;color:#5d6a58">For our homes, our workplaces—and the people who handle what we leave behind.</p>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <a href="#" style="background:#4a7a2c;color:#fff;padding:14px 26px;border-radius:999px;font-weight:600;font-size:17px">Start sorting</a>
+        <a href="#" style="border:1.5px solid #1e3319;color:#1e3319;padding:13px 26px;border-radius:999px;font-weight:600;font-size:17px">Create a class game</a>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;padding-top:8px;border-top:1px solid #d8dccf">
+        <div style="display:flex;gap:6px;padding-top:16px">
+          <span style="width:12px;height:12px;border-radius:50%;background:#4a7a2c"></span>
+          <span style="width:12px;height:12px;border-radius:50%;background:#3f6fa8"></span>
+          <span style="width:12px;height:12px;border-radius:50%;background:#c0456b"></span>
+          <span style="width:12px;height:12px;border-radius:50%;background:#d08a1e"></span>
+        </div>
+        <p style="margin:0;padding-top:16px;font-size:15px;line-height:1.4;color:#5d6a58"><strong style="color:#1e3319;font-weight:600">Wet, dry, sanitary and special care.</strong> The same four bins your municipality collects.</p>
+      </div>
+    </section>
+
+    <section style="background:#fff;border:1.5px solid #1e3319;border-radius:24px;padding:24px;display:flex;flex-direction:column;gap:16px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start">
+        <div>
+          <div style="font-weight:600;font-size:20px">Sample round</div>
+          <div style="font-size:14px;color:#5d6a58">Item {{ itemNo }} of 6</div>
+        </div>
+        <div style="border:1.5px solid #1e3319;border-radius:999px;padding:4px 14px;font-size:14px">Score <strong>{{ score }}</strong></div>
+      </div>
+      <div style="background:#f6f7f2;border-radius:16px;padding:40px 16px;display:flex;flex-direction:column;align-items:center;gap:12px">
+        <span style="font-size:13px;color:#5d6a58">Which bin?</span>
+        <span style="background:#1e3319;color:#fff;padding:8px 18px;border-radius:999px;font-weight:600;font-size:16px">{{ item }}</span>
+      </div>
+      <div style="font-size:14px;color:#5d6a58;text-align:center"><strong style="color:#1e3319;font-weight:600">Pick the right bin.</strong> Tap a bin, or press 1 to 4 on your keyboard.</div>
+      <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px">
+        <sc-for list="{{ bins }}" as="b" hint-placeholder-count="4">
+          <button onClick="{{ b.pick }}" style="{{ b.style }}">
+            <span style="font-size:11px;opacity:.6">{{ b.key }}</span>
+            <span>{{ b.name }}</span>
+          </button>
+        </sc-for>
+      </div>
+    </section>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { i: 0, score: 0, picked: null };
+  items = [['Banana peel',0],['Plastic bottle',1],['Used tissue',2],['Battery',3],['Apple core',0],['Newspaper',1]];
+  bins = [['Wet','#4a7a2c','#dfe8d2'],['Dry','#3f6fa8','#d6e2ee'],['Sanitary','#c0456b','#f2d6df'],['Special care','#d08a1e','#f6e2c2']];
+  componentDidMount(){ this.onKey=e=>{const n=+e.key; if(n>=1&&n<=4) this.pick(n-1)}; window.addEventListener('keydown',this.onKey); }
+  componentWillUnmount(){ window.removeEventListener('keydown',this.onKey); }
+  pick(n){
+    if(this.state.picked!==null) return;
+    const ok=this.items[this.state.i][1]===n;
+    this.setState(s=>({picked:n,score:s.score+(ok?1:0)}));
+    setTimeout(()=>this.setState(s=>({picked:null,i:(s.i+1)%6,score:s.i===5?0:s.score})),700);
+  }
+  renderVals(){
+    const {i,score,picked}=this.state, ans=this.items[i][1];
+    return {
+      itemNo:i+1, item:this.items[i][0], score,
+      bins:this.bins.map(([name,c,bg],n)=>{
+        const flash=picked!==null&&(n===ans||n===picked);
+        return {name,key:n+1,pick:()=>this.pick(n),style:{
+          background:bg,border:`1.5px solid ${flash?(n===ans?c:'#1e3319'):'transparent'}`,borderRadius:14,padding:'18px 6px 14px',
+          display:'flex',flexDirection:'column',alignItems:'center',gap:6,cursor:'pointer',fontFamily:'inherit',fontSize:15,fontWeight:600,color:c,
+          opacity:picked!==null&&!flash?.5:1,transition:'opacity .2s'}};
+      })
+    };
+  }
+}
+</script>
+</body>
+</html>
